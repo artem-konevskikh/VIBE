@@ -88,7 +88,7 @@ def download_youtube_clip(url, download_folder):
     yt = YouTube(url, on_progress_callback=on_progress)
     st = yt.streams.get_highest_resolution()
     id=extract.video_id(url)
-    filename = f{id}.{st.default_filename.split('.')[-1]}"
+    filename = f"{id}.{st.default_filename.split('.')[-1]}"
     return st.download(output_path=download_folder, filename=filename)
 
 
