@@ -85,7 +85,11 @@ def preprocess_video(video, joints2d, bboxes, frames, scale=1.0, crop_size=224):
 
 
 def download_youtube_clip(url, download_folder):
-    return YouTube(url).streams.first().download(output_path=download_folder)
+    yt = YouTube(url, on_progress_callback=on_progress)
+    st = yt.streams.get_highest_resolution()
+    id=extract.video_id(url)
+    filename = f{id}.{st.default_filename.split('.')[-1]}"
+    return st.download(output_path=download_folder, filename=filename)
 
 
 def smplify_runner(
